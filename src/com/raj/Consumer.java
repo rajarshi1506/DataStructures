@@ -1,6 +1,6 @@
-package com.rbc;
+package com.raj;
 
-import com.rbc.tree.BinaryTree;
+import com.raj.tree.BinaryTree;
 
 public class Consumer {
 
