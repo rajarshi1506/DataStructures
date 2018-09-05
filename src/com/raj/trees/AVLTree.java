@@ -22,8 +22,8 @@ public class AVLTree<T extends Comparable<T>> implements Tree<T> {
 		left.right = node;
 		node.left = right;
 
-		left.height = max(height(left.left), height(left.right)) + 1;
-		node.height = max(height(node.left), height(node.right)) + 1;
+		left.height = height(left) + 1;
+		node.height = height(node) + 1;
 
 		return left;
 	}
@@ -36,8 +36,8 @@ public class AVLTree<T extends Comparable<T>> implements Tree<T> {
 		right.left = node;
 		node.right = left;
 
-		right.height = max(height(right.left), height(right.right)) + 1;
-		node.height = max(height(node.left), height(node.right)) + 1;
+		right.height = height(right) + 1;
+		node.height = height(node) + 1;
 
 		return right;
 	}
@@ -48,10 +48,9 @@ public class AVLTree<T extends Comparable<T>> implements Tree<T> {
 
 	private Node<T> balanceNode(Node<T> node, Node<T> newNode) {
 
-
 		int nodeBalance = getBalance(node);
-		
-		//System.out.println("node balance :::"+nodeBalance);
+
+		// System.out.println("node balance :::"+nodeBalance);
 
 		// left left case
 		if (nodeBalance > 1 && newNode.value.compareTo(node.left.value) < 0)
@@ -79,15 +78,15 @@ public class AVLTree<T extends Comparable<T>> implements Tree<T> {
 	private int height(Node<T> node) {
 		if (node == null)
 			return 0;
-		return max(height(node.left),height(node.right)) + 1;
+		return max(height(node.left), height(node.right));
 	}
 
 	public void add(T value) {
 		Node<T> newNode = new Node<T>();
 		newNode.value = value;
-		
-		//System.out.println("tree before adding:::");
-		//tree.preOrderPrint();
+
+		// System.out.println("tree before adding:::");
+		// tree.preOrderPrint();
 
 		if (tree.root == null) {
 			tree.root = newNode;
@@ -103,9 +102,9 @@ public class AVLTree<T extends Comparable<T>> implements Tree<T> {
 				tree.size--;
 		}
 
-		tree.root=balanceNode(tree.root, newNode);
-		//System.out.println("tree after adding:::");
-		//tree.preOrderPrint();
+		tree.root = balanceNode(tree.root, newNode);
+		// System.out.println("tree after adding:::");
+		// tree.preOrderPrint();
 	}
 
 	@Override
@@ -121,7 +120,7 @@ public class AVLTree<T extends Comparable<T>> implements Tree<T> {
 
 	@Override
 	public void preOrderPrint() {
-		tree.preOrderPrint();		
+		tree.preOrderPrint();
 	}
 
 }
